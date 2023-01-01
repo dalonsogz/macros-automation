@@ -1,0 +1,32 @@
+version: 1
+
+disable_existing_loggers: False
+
+formatters:
+  simple:
+    format: "%(name)s - %(levelname)s - %(message)s"
+  precise:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+  file_pynput_test:
+    class: logging.FileHandler
+    filename: pynput_test.log
+    mode: w
+    encoding: utf8
+    formatter: precise
+
+loggers:
+  pynput_test:
+      level: INFO
+      handlers: [console,file_pynput_test]
+      propagate: False
+
+root:
+  level: DEBUG
+  handlers: [console]
